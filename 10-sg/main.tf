@@ -29,3 +29,10 @@ module "sg" {
 #   protocol          = "tcp"
 #   to_port           = 80
 # }
+
+# Store Bastion Security Group ID in AWS SSM Parameter Store
+resource "aws_ssm_parameter" "bastion_sg_id" {
+  name  = "/${var.project_name}/${var.environment}/bastion_sg_id"
+  type  = "String"
+  value = module.sg[0].sg_id
+}
