@@ -6,7 +6,7 @@ resource "aws_lb" "backend_alb" {
   # it should be private subnet ids
   subnets            = local.private_subnet_ids
 
-  enable_deletion_protection = true # prevents accidental deletion from UI
+  enable_deletion_protection = false # prevents accidental deletion from UI
 
   tags = merge (
     local.common_tags,
