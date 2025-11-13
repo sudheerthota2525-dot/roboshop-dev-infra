@@ -291,6 +291,15 @@ resource "aws_security_group_rule" "bastion_laptop" {
   to_port           = 22
 }
 
+resource "aws_security_group_rule" "open_vpn_public" {
+  type              = "ingress"
+  security_group_id = local.open_vpn_sg_id
+  cidr_blocks = ["0.0.0.0/0"]
+  from_port         = 22
+  protocol          = "tcp"
+  to_port           = 22
+}
+
 #This is the mistake we did, cart can't access components directly from one component to another component. they should be communicated through backend ALB
 /* resource "aws_security_group_rule" "cart_shipping" {
   type              = "ingress"
